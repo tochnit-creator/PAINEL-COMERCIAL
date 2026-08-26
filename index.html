@@ -259,19 +259,51 @@
 
   /* ---------- TEAM BAR ---------- */
   .teambar{
-    background:var(--panel);
-    border:1px solid var(--line);
+    position:relative;
+    background: linear-gradient(180deg, rgba(232,179,76,0.06), transparent 45%), var(--panel);
+    border:1px solid rgba(232,179,76,0.3);
     border-radius: var(--radius);
     padding:20px 26px;
     display:flex; align-items:center; gap:30px; flex-wrap:wrap;
+    box-shadow:
+      0 0 0 1px rgba(232,179,76,0.06),
+      0 0 34px rgba(232,179,76,0.12),
+      0 18px 40px rgba(0,0,0,0.35);
+    overflow:hidden;
+  }
+  .teambar::before{
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:0.75;
   }
   .team-title{ display:flex; flex-direction:column; gap:2px; min-width:120px; }
   .team-title .eyebrow{ font-size:10.5px; letter-spacing:0.14em; color:var(--text-faint); text-transform:uppercase; }
   .team-title strong{ font-size:17px; font-weight:700; }
-  .team-metrics{ display:flex; gap:26px; flex-wrap:wrap; flex:1; }
-  .team-metric{ display:flex; flex-direction:column; gap:5px; }
-  .team-metric .l{ font-size:14px; color:#e7ebf5; text-transform:uppercase; letter-spacing:0.06em; font-weight:600; }
-  .team-metric .v{ font-family:'IBM Plex Mono', monospace; font-size:26px; font-weight:700; color:var(--text); }
+  .team-metrics{ display:flex; gap:14px; flex-wrap:wrap; flex:1; }
+  .team-metric{
+    position:relative;
+    display:flex; flex-direction:column; gap:8px;
+    background: linear-gradient(160deg, rgba(232,179,76,0.09), rgba(255,255,255,0.015) 60%);
+    border:1px solid rgba(232,179,76,0.22);
+    border-radius:14px;
+    padding:14px 20px 15px;
+    min-width:168px;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+  .team-metric::before{
+    content:'';
+    position:absolute; top:0; left:20px; width:26px; height:2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .team-metric .l{ font-size:12.5px; color:#e7ebf5; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
+  .team-metric .v{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700; font-size:25px; letter-spacing:0.01em;
+    background: linear-gradient(135deg, #fff6df 0%, #f0c874 45%, #d9a548 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent; -webkit-text-fill-color: transparent;
+  }
   .team-bar-wrap{ flex:1; min-width:160px; display:flex; align-items:center; gap:10px; }
   .team-bar{ flex:1; height:10px; border-radius:6px; background:var(--line-soft); overflow:hidden; }
   .team-bar-fill{ height:100%; border-radius:6px; background:linear-gradient(90deg, var(--gold), var(--good)); transition:width .8s ease; }

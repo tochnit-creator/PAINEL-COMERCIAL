@@ -233,7 +233,7 @@
     align-items:center; justify-content:center;
   }
   .gauge-pct{ font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:40px; }
-  .gauge-label{ font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-faint); margin-top:2px; }
+  .gauge-label{ font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:#e7ebf5; margin-top:2px; }
 
   .stat-grid{
     display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;
@@ -243,7 +243,7 @@
     padding:12px 14px;
   }
   .stat-card.emph{ border-color: rgba(232,179,76,0.35); background: var(--gold-soft); }
-  .stat-label{ font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; }
+  .stat-label{ font-size:11px; color:#e7ebf5; text-transform:uppercase; letter-spacing:0.06em; font-weight:600; }
   .stat-value{ font-size:18px; font-weight:600; margin-top:5px; }
   .stat-value.neg{ color: var(--bad); }
   .stat-value.pos{ color: var(--good); }
@@ -262,20 +262,20 @@
     background:var(--panel);
     border:1px solid var(--line);
     border-radius: var(--radius);
-    padding:16px 22px;
-    display:flex; align-items:center; gap:26px; flex-wrap:wrap;
+    padding:20px 26px;
+    display:flex; align-items:center; gap:30px; flex-wrap:wrap;
   }
   .team-title{ display:flex; flex-direction:column; gap:2px; min-width:120px; }
   .team-title .eyebrow{ font-size:10.5px; letter-spacing:0.14em; color:var(--text-faint); text-transform:uppercase; }
   .team-title strong{ font-size:17px; font-weight:700; }
   .team-metrics{ display:flex; gap:26px; flex-wrap:wrap; flex:1; }
-  .team-metric{ display:flex; flex-direction:column; gap:3px; }
-  .team-metric .l{ font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; }
-  .team-metric .v{ font-family:'IBM Plex Mono', monospace; font-size:15px; font-weight:600; }
+  .team-metric{ display:flex; flex-direction:column; gap:5px; }
+  .team-metric .l{ font-size:14px; color:#e7ebf5; text-transform:uppercase; letter-spacing:0.06em; font-weight:600; }
+  .team-metric .v{ font-family:'IBM Plex Mono', monospace; font-size:26px; font-weight:700; color:var(--text); }
   .team-bar-wrap{ flex:1; min-width:160px; display:flex; align-items:center; gap:10px; }
   .team-bar{ flex:1; height:10px; border-radius:6px; background:var(--line-soft); overflow:hidden; }
   .team-bar-fill{ height:100%; border-radius:6px; background:linear-gradient(90deg, var(--gold), var(--good)); transition:width .8s ease; }
-  .team-pct{ font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:22px; color:var(--gold); min-width:64px; text-align:right; }
+  .team-pct{ font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:34px; color:var(--gold); min-width:80px; text-align:right; }
 
   .sync-note{
     font-size:11px; color:var(--text-faint); text-align:right; padding-top:2px;
@@ -294,9 +294,80 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
   }
+
+  /* ---------- LOCK SCREEN ---------- */
+  body.locked .stage{ display:none; }
+  body:not(.locked) .lock-overlay{ display:none; }
+  .lock-overlay{
+    position:fixed; inset:0; z-index:1000;
+    background: var(--bg-vign), var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .lock-card{
+    width:100%; max-width:380px;
+    background:var(--panel); border:1px solid var(--line); border-radius: var(--radius);
+    padding:34px 30px; text-align:center;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+  }
+  .lock-icon{
+    width:56px; height:56px; border-radius:50%; margin:0 auto 18px;
+    background: linear-gradient(155deg, var(--gold), #a9722a);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 0 1px var(--line), 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .lock-title{ font-size:20px; font-weight:700; margin:0 0 4px; color:var(--text); }
+  .lock-sub{ font-size:12.5px; color:var(--text-dim); margin:0 0 24px; }
+  .lock-field{ position:relative; margin-bottom:14px; }
+  .lock-input{
+    width:100%; background:var(--panel-2); border:1px solid var(--line); border-radius:10px;
+    padding:12px 68px 12px 14px; color:var(--text); font-size:15px;
+    font-family:'IBM Plex Sans', sans-serif; outline:none; transition: border-color .15s ease;
+  }
+  .lock-input:focus{ border-color: var(--gold); }
+  .lock-toggle{
+    position:absolute; right:8px; top:50%; transform:translateY(-50%);
+    background:none; border:none; color:var(--text-faint); cursor:pointer;
+    font-size:11.5px; font-weight:600; letter-spacing:0.03em; padding:6px 8px;
+  }
+  .lock-toggle:hover{ color:var(--text-dim); }
+  .lock-btn{
+    width:100%; padding:12px; border-radius:10px; border:none; margin-top:4px;
+    background: linear-gradient(155deg, var(--gold), #a9722a);
+    color:#0a111f; font-weight:700; font-size:14.5px; cursor:pointer;
+    letter-spacing:0.02em; transition: filter .15s ease;
+  }
+  .lock-btn:hover{ filter:brightness(1.08); }
+  .lock-error{ color:var(--bad); font-size:12.5px; margin-top:14px; min-height:16px; }
+  .lock-card.shake{ animation: shake .4s; }
+  @keyframes shake{
+    10%, 90%{ transform:translateX(-1px); }
+    20%, 80%{ transform:translateX(2px); }
+    30%, 50%, 70%{ transform:translateX(-4px); }
+    40%, 60%{ transform:translateX(4px); }
+  }
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div class="lock-overlay">
+  <div class="lock-card" id="lockCard">
+    <div class="lock-icon">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#0a111f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="11" width="14" height="9" rx="2"></rect>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+      </svg>
+    </div>
+    <h1 class="lock-title">Painel Televendas</h1>
+    <p class="lock-sub">Acesso restrito — digite a senha para continuar</p>
+    <div class="lock-field">
+      <input type="password" id="lockInput" class="lock-input" placeholder="Senha" autocomplete="off">
+      <button type="button" class="lock-toggle" id="lockToggle">MOSTRAR</button>
+    </div>
+    <button type="button" class="lock-btn" id="lockBtn">Entrar</button>
+    <div class="lock-error" id="lockError"></div>
+  </div>
+</div>
 
 <script type="text/plain" id="seed-csv">CONTROLE DE METAS – TELEVENDAS | AGOSTO/2026,,,,,,,,,,,
 ,,,,,,,,,,,
@@ -405,7 +476,7 @@ EQUIPE,"R$ 3.787.000,00","R$ 2.488.552,31","65,7%","R$ 1.298.447,69","R$ 189.350
   "use strict";
 
   var SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSBkp8_MpzMPbgK89s_dML7cpf-SRXGWMfKbqUCiTw9BrFj1YsDEymvXzikpC5nAw/pub?gid=801850208&single=true&output=csv";
-  var ROTATE_MS = 3000;
+  var ROTATE_MS = 10000;
   var POLL_MS = 15000;
 
   var state = { sellers: [], team: null, info: {}, title: '' };
@@ -616,8 +687,8 @@ EQUIPE,"R$ 3.787.000,00","R$ 2.488.552,31","65,7%","R$ 1.298.447,69","R$ 189.350
       { label: 'Meta mensal', val: s.metaMensal },
       { label: 'Venda realizada', val: s.vendaRealizada, emph: true },
       { label: 'Falta p/ meta', val: s.faltaParaMeta },
-      { label: 'Meta diária', val: s.metaDiaria },
       { label: 'Meta acum. hoje', val: s.metaAcumuladaHoje },
+      { label: 'Meta diária', val: s.metaDiaria },
       { label: 'Saldo diário acum.', val: s.metaDiariaAcumulada, signed: true }
     ];
     grid.innerHTML = '';
@@ -752,14 +823,53 @@ EQUIPE,"R$ 3.787.000,00","R$ 2.488.552,31","65,7%","R$ 1.298.447,69","R$ 189.350
   });
 
   // ---------- Boot ----------
-  var seed = document.getElementById('seed-csv').textContent;
-  applyData(seed);
-  setSyncNote('Carregado com dados iniciais — sincronizando…', false);
-  restartRotation();
+  var booted = false;
+  function boot(){
+    if (booted) return;
+    booted = true;
+    var seed = document.getElementById('seed-csv').textContent;
+    applyData(seed);
+    setSyncNote('Carregado com dados iniciais — sincronizando…', false);
+    restartRotation();
 
-  fetchData().then(function(){
-    setInterval(fetchData, POLL_MS);
+    fetchData().then(function(){
+      setInterval(fetchData, POLL_MS);
+    });
+  }
+
+  // ---------- Lock screen ----------
+  var PANEL_PASSWORD = "Super2026*";
+
+  function tryUnlock(){
+    var input = document.getElementById('lockInput');
+    var errorEl = document.getElementById('lockError');
+    var card = document.getElementById('lockCard');
+    if (input.value === PANEL_PASSWORD){
+      document.body.classList.remove('locked');
+      errorEl.textContent = '';
+      boot();
+    } else {
+      errorEl.textContent = 'Senha incorreta. Tente novamente.';
+      card.classList.remove('shake');
+      void card.offsetWidth;
+      card.classList.add('shake');
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  document.getElementById('lockBtn').addEventListener('click', tryUnlock);
+  document.getElementById('lockInput').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') tryUnlock();
   });
+  document.getElementById('lockToggle').addEventListener('click', function(){
+    var input = document.getElementById('lockInput');
+    var isPwd = input.type === 'password';
+    input.type = isPwd ? 'text' : 'password';
+    this.textContent = isPwd ? 'OCULTAR' : 'MOSTRAR';
+    input.focus();
+  });
+  document.getElementById('lockInput').focus();
 
 })();
 </script>

@@ -239,7 +239,7 @@
   .spot-badge.bad{ background:var(--bad-soft); color:var(--bad); }
 
   .spot-body{
-    flex:1; display:grid; grid-template-columns: 220px 1fr;
+    display:grid; grid-template-columns: 220px 1fr;
     gap:30px; align-items:center; margin-top:20px; position:relative; z-index:1;
     min-height:0;
   }
@@ -276,25 +276,12 @@
   .sub-bar-fill{ height:100%; border-radius:5px; transition: width .8s ease, background .5s ease; }
   .sub-pct{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:17px; min-width:44px; text-align:right;}
 
-  /* ---------- TEAM BAR ---------- */
-  .teambar{
-    position:relative;
-    background: linear-gradient(180deg, rgba(232,179,76,0.06), transparent 45%), var(--panel);
-    border:1px solid rgba(232,179,76,0.3);
-    border-radius: var(--radius);
-    padding:20px 26px;
-    display:flex; align-items:center; gap:30px; flex-wrap:wrap;
-    box-shadow:
-      0 0 0 1px rgba(232,179,76,0.06),
-      0 0 34px rgba(232,179,76,0.12),
-      0 18px 40px rgba(0,0,0,0.35);
-    overflow:hidden;
-  }
-  .teambar::before{
-    content:'';
-    position:absolute; top:0; left:0; right:0; height:2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity:0.75;
+  /* ---------- TEAM SUMMARY (dentro do spotlight) ---------- */
+  .spot-team{
+    flex:1;
+    position:relative; z-index:1;
+    display:flex; align-items:center; gap:26px; flex-wrap:wrap;
+    margin-top:18px; padding:18px 0; border-top:1px solid var(--line);
   }
   .team-title{ display:flex; flex-direction:column; gap:2px; min-width:120px; }
   .team-title .eyebrow{ font-size:13.5px; letter-spacing:0.14em; color:var(--text-faint); text-transform:uppercase; }
@@ -394,6 +381,8 @@
     .spot-body{ grid-template-columns:1fr; }
     .gauge-wrap{ margin:0 auto; }
     .stat-grid{ grid-template-columns: repeat(2,1fr); }
+    .spot-team{ flex-direction:column; align-items:stretch; gap:14px; }
+    .team-bar-wrap{ min-width:0; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -564,6 +553,31 @@ EQUIPE,"R$ 3.787.000,00","R$ 2.488.552,31","65,7%","R$ 1.298.447,69","R$ 189.350
         <div class="stat-grid" id="statGrid"></div>
       </div>
 
+      <div class="spot-team">
+        <div class="team-title">
+          <span class="eyebrow">Equipe</span>
+          <strong id="teamName">TELEVENDAS</strong>
+        </div>
+        <div class="team-metrics">
+          <div class="team-metric">
+            <span class="l">Meta mensal</span>
+            <span class="v num" id="teamMeta">—</span>
+          </div>
+          <div class="team-metric">
+            <span class="l">Realizado</span>
+            <span class="v num" id="teamRealizado">—</span>
+          </div>
+          <div class="team-metric">
+            <span class="l">Falta p/ meta</span>
+            <span class="v num" id="teamFalta">—</span>
+          </div>
+        </div>
+        <div class="team-bar-wrap">
+          <div class="team-bar"><div class="team-bar-fill" id="teamBarFill"></div></div>
+          <span class="team-pct display" id="teamPct">0%</span>
+        </div>
+      </div>
+
       <div class="spot-sub">
         <span class="sub-label">% meta diária atingido</span>
         <div class="sub-bar"><div class="sub-bar-fill" id="subBarFill"></div></div>
@@ -571,31 +585,6 @@ EQUIPE,"R$ 3.787.000,00","R$ 2.488.552,31","65,7%","R$ 1.298.447,69","R$ 189.350
       </div>
     </section>
   </main>
-
-  <footer class="teambar">
-    <div class="team-title">
-      <span class="eyebrow">Equipe</span>
-      <strong id="teamName">TELEVENDAS</strong>
-    </div>
-    <div class="team-metrics">
-      <div class="team-metric">
-        <span class="l">Meta mensal</span>
-        <span class="v num" id="teamMeta">—</span>
-      </div>
-      <div class="team-metric">
-        <span class="l">Realizado</span>
-        <span class="v num" id="teamRealizado">—</span>
-      </div>
-      <div class="team-metric">
-        <span class="l">Falta p/ meta</span>
-        <span class="v num" id="teamFalta">—</span>
-      </div>
-    </div>
-    <div class="team-bar-wrap">
-      <div class="team-bar"><div class="team-bar-fill" id="teamBarFill"></div></div>
-      <span class="team-pct display" id="teamPct">0%</span>
-    </div>
-  </footer>
 
   <div class="sync-note" id="syncNote">sincronizando…</div>
 </div>
